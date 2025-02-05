@@ -1,0 +1,116 @@
+org: flowper
+service: aws-lambda-contact-crud
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  httpApi:
+    payload: "2.0"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:650251714077:table/aws-lambda-contact-crud-contacts"
+    - Effect: Allow
+      Action:
+        - s3:PostObject
+        - s3:PutObject
+        - s3:GetObject
+        - s3:DeleteObject
+      Resource: "arn:aws:s3:::contacts-uploads-bucket/*"
+
+  apiGateway:
+    apiKeys:
+      - free:
+          - ${self:service}-free-key-${self:custom.stage}
+      - paid:
+          - ${self:service}-paid-key-${self:custom.stage}
+    # usagePlan:
+    #   - free:
+    #       quota:
+    #         limit: 5000
+    #         period: MONTH
+    #         offset: 2
+    #       throttle:
+    #         burstLimit: 200
+    #         rateLimit: 100
+    #   - paid:
+    #       quota:
+    #         limit: 50000
+    #         period: MONTH
+    #         offset: 1
+    #       throttle:
+
+
+functions:
+  hello:
+    handler: src/contact.hello
+    events:
+      - httpApi:
+          cors: true
+          private: true
+          path: /
+          method: get
+  addContact:
+    handler: src/addContact.addContact
+    events:
+      - httpApi:
+          cors: true
+          private: true
+          path: /contact
+          method: post
+  getContacts:
+    handler: src/getContacts.getContacts
+    events:
+      - httpApi:
+          cors: true
+          private: true
+          path: /contacts
+          method: get
+  uploadFiles:
+    handler: src/uploadFiles.uploadFiles
+    memorySize: 512
+    timeout: 30
+    events:
+      - httpApi:
+          cors: true
+          private: true
+          path: /upload
+          method: post
+
+
+resources:
+  Resources:
+    ContactsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-contacts
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+    S3UploadsBucket:
+        Type: AWS::S3::Bucket
+        Properties:
+          BucketName: contacts-uploads-bucket
+          AccessControl: Private
+          CorsConfiguration:
+            CorsRules:
+              - AllowedOrigins:
+                  - "*"
+                AllowedMethods:
+                  - GET
+                  - PUT
+                  - POST
+                  - DELETE
+                AllowedHeaders:
+                  - "*"
