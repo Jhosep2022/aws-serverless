@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "dotenv": "^16.4.7",
+    "serverless-dotenv-plugin": "^6.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+org: flowper
+service: aws-lambda-verify-captcha
+
+plugins:
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  environment:
+    RECAPTCHA_SECRET_KEY: ${env:RECAPTCHA_SECRET_KEY}
+
+functions:
+  verifyCaptcha:
+    handler: src/captcha.verifyCaptcha
+    events:
+      - http:
+          cors: true
+          path: /verify-captcha
+          method: post

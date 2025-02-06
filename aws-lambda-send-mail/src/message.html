@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div
+      style="
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f9fafb;
+        padding: 16px;
+      "
+    >
+      <div
+        style="
+          max-width: 625px;
+          margin: auto;
+          background-color: #ffffff;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <div style="padding: 32px; text-align: left">
+          <div
+            style="
+              width: 64px;
+              height: 64px;
+              border-radius: 16px;
+              margin: auto;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <div style="height: 60px; width: 60px; user-select: none">
+              <img
+                src="https://res.cloudinary.com/dfvzfsy97/image/upload/v1737988146/flowper-light-icon_h72tdv.png"
+                alt="flowper-icon"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px"
+              />
+            </div>
+          </div>
+          <h1 style="color: #645aff; font-size: 22px; margin: 8px 0; text-align: center">
+            Flowper
+          </h1>
+          <h1 style="font-size: 22px; margin: 20px 0 16px; text-align: center">
+            Hola {{name}}!
+            <br />
+            Hemos recibido tu mensaje
+          </h1>
+          <p style="color: #adadad; font-size: 13px">
+            Gracias por contactar con Flowper. Este correo es para confirmar que hemos recibido tu
+            mensaje correctamente.
+          </p>
+          <p style="color: #adadad; font-size: 13px">
+            Nuestro equipo revisará tu solicitud y te responderemos dentro de las próximas 24
+            horas hábiles.
+          </p>
+          <p style="color: #adadad; font-size: 13px">
+            Por favor, guarda este correo como referencia de tu consulta.
+          </p>
+          <div
+            style="
+              margin: 24px 0;
+              background-color: #f7f4ff;
+              border-radius: 8px;
+              padding: 16px;
+              text-align: left;
+              font-size: 13px;
+            "
+          >
+            <p style="margin: 0"><strong>Fecha de recepción:</strong> {{receivedDate}}</p>
+            <p style="margin: 0">
+              <strong>Estado:</strong>
+              <strong style="color: #645aff">Recibido</strong>
+            </p>
+            <p style="margin: 0">
+              <strong>Tiempo estimado de respuesta:</strong> 24 horas hábiles
+            </p>
+          </div>
+          <p style="color: #adadad; margin: 24px 0 15px 0; font-size: 13px">
+            Si tienes alguna pregunta adicional mientras esperas nuestra respuesta, no dudes en
+            revisar nuestra documentación o contactarnos a través de cualquiera de nuestros
+            canales de soporte.
+          </p>
+          <p style="color: #adadad; margin: 0; font-size: 13px">
+            Gracias por confiar en Flowper para tus soluciones tecnológicas.
+          </p>
+        </div>
+        <div
+          style="
+            padding: 16px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            color: #adadad;
+            font-size: 13px;
+          "
+        >
+          <p style="margin: 0; font-size: 12px">
+            International Knowledge Hub, Inc., 800 North King Street Wilmington, DE, 19801 US
+          </p>
+          <p style="margin: 0; font-size: 12px">
+            ¿Necesitas referirte a este mensaje? Utiliza este ID:
+            <strong>{{id}}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
