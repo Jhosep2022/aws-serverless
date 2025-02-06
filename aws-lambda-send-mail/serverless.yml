@@ -1,4 +1,3 @@
-org: flowper
 service: aws-lambda-send-email
 
 plugins:
@@ -18,9 +17,7 @@ provider:
 functions:
   sendConfirmationEmail:
     handler: src/mail.sendConfirmationEmail
-    events:
-      - http:
-          cors: true
-          private: true
-          path: /send-mail
-          method: post
+
+package:
+  patterns:
+    - src/message.html

@@ -1,4 +1,3 @@
-org: flowper
 service: aws-lambda-verify-captcha
 
 plugins:

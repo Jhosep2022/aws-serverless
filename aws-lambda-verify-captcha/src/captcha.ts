@@ -18,7 +18,7 @@ export const verifyCaptcha = async (event: any) => {
       {},
       {
         params: {
-          secret: process.env.recaptchaSecretKey,
+          secret: process.env.RECAPTCHA_SECRET_KEY,
           response: token,
         },
       }
